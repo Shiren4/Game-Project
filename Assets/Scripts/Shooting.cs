@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    private Camera mainCam;
-    private Vector3 mousePos;
     public GameObject bullet;
     public Transform bulletTransform;
     public bool canFire;
-    private float timer;
     public float timeBetweenFiring;
+    private Camera mainCam;
+    private Vector3 mousePos;
+    private float timer;
 
 
-void Start()
-{
+    void Start()
+    { 
         mainCam = Camera.main;
-}
-
-
+    }
     private void Update()
     {
         ApplyWeaponRotation();
         TryCalculateDelayBetweenFiring();
         TryShoot();
-
     }
-
     private void TryShoot()
     {
         if (Input.GetMouseButton(0) && canFire)
@@ -35,7 +31,6 @@ void Start()
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
-
     private void TryCalculateDelayBetweenFiring()
     {
         if (!canFire)
@@ -48,15 +43,11 @@ void Start()
             }
         }
     }
-
     private void ApplyWeaponRotation()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-
         Vector3 rotation = mousePos - transform.position;
-
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }

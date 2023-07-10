@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    
+    public Rigidbody2D rb;  
     public Animator animator;
-
     Vector2 movement;
-
-
     void Update() 
     {
         movement.x = Input.GetAxisRaw("Horizontal");

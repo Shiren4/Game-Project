@@ -4,6 +4,7 @@ public class DmgMod : MonoBehaviour
 {
     public int damage = 10;
     public float attackInterval = 1f; // Częstotliwość ataków przeciwnika
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -27,7 +28,7 @@ public class DmgMod : MonoBehaviour
 
     private void AttackPlayer()
     {
-        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        PlayerStats playerStats = PlayerStats.Instance;
         if (playerStats != null)
         {
             playerStats.TakeDamage(damage);

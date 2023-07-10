@@ -6,15 +6,10 @@ using UnityEngine.UI;
 public class PlayerStatsUI : MonoBehaviour
 {
     public Text statsText;
-  
-
     private void Start()
-    {               
-        {
-            UpdateUI();
-        }
+    {                     
+        UpdateUI();       
     }
-
     private void UpdateUI()
     {
         string stats = "Health: " + PlayerStats.Instance.currentHealth.ToString() +
@@ -25,11 +20,8 @@ public class PlayerStatsUI : MonoBehaviour
 
         statsText.text = stats;
     }
-
     private void Update()
-    {       
-        {
-            UpdateUI();
-        }
+    {             
+        UpdateUI();       
     }
 }

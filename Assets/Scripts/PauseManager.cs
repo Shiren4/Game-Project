@@ -13,7 +13,6 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
     public GameObject pauseMenu;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,7 +20,6 @@ public class PauseManager : MonoBehaviour
             TogglePause();
         }
     }
-
     public void TogglePause()
     {
         isPaused = !isPaused;
@@ -35,21 +33,17 @@ public class PauseManager : MonoBehaviour
             ResumeGame();
         }
     }
-
     public void PauseGame()
     {
         Time.timeScale = 0f; // Zatrzymaj czas w grze
         pauseMenu.SetActive(true); // Wyświetl menu pauzy
     }
-
     public void ResumeGame()
     {
         Time.timeScale = 1f; // Wznów czas w grze
         pauseMenu.SetActive(false); // Ukryj menu pauzy
     }
-
-    public void UpgradeDMG()
-        
+    public void UpgradeDMG()      
     {
         if (PlayerStats.Instance.gold >= PlayerStats.Instance.requiredGoldForDmg)
         {
@@ -57,10 +51,8 @@ public class PauseManager : MonoBehaviour
             PlayerStats.Instance.ExchangeGoldForStat(PlayerStats.UpgradeStat.Damage);
             PlayerStats.Instance.IncreaseGoldForStats(PlayerStats.UpgradeStat.Damage);
             DamagePriceText.text = string.Format("Price: {0} GOLD", PlayerStats.Instance.requiredGoldForDmg.ToString());
-        }
-              
+        }           
     }
-
     public void UpgradeSpeed()
     {
         if (PlayerStats.Instance.gold >= PlayerStats.Instance.requiredGoldForSpeed)
@@ -72,16 +64,12 @@ public class PauseManager : MonoBehaviour
         }
 
     }
-
     public void Exit()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);                     
     }
-
-
-
     private void Start()
     {
         pauseMenu.SetActive(false); // Wyłącz menu pauzy na starcie gry

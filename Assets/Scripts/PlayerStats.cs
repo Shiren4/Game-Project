@@ -7,19 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; }
-    private void Awake()
-    {
-        // If there is an instance, and it's not me, delete myself.
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
     public int damage = 3;
     public int maxHealth = 100;
     public int currentHealth;
@@ -32,9 +19,8 @@ public class PlayerStats : MonoBehaviour
     public enum UpgradeStat
     {
         Damage,
-        Speed
+        Speed  
     }
-
     private void Start()
     {      
         currentHealth = maxHealth;
@@ -64,10 +50,7 @@ public class PlayerStats : MonoBehaviour
                 break;             
 
         }
-
-
     }
-
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
@@ -76,13 +59,6 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
-
-    private void Die()
-    {
-        Debug.Log("Gracz zginął");
-        SceneManager.LoadScene("Menu");
-    }
-
     public void AddGold(int amount)
     {
         gold += amount;
@@ -91,5 +67,21 @@ public class PlayerStats : MonoBehaviour
     public void AddKill()
     {
         killCount++;
+    }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    private void Die()
+    {
+        Debug.Log("Gracz zginął");
+        SceneManager.LoadScene("Menu");
     }
 }

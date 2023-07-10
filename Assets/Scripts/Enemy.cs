@@ -5,21 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float health, maxHealth = 3f;
     public int goldReward = 10;
+    [SerializeField] float health, maxHealth = 3f;
 
     private PlayerStats playerStats;
-
-    private void Start()
-    {
-        health = maxHealth;
-        playerStats = FindObjectOfType<PlayerStats>();
-        if (playerStats == null)
-        {
-            Debug.LogWarning("Nie znaleziono komponentu PlayerStats w scenie.");
-        }
-    }
-
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
@@ -29,10 +18,21 @@ public class Enemy : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.AddGold(goldReward);
-                PlayerStats.Instance.score += 23;
+                playerStats.score += 23;
                 playerStats.AddKill(); // Dodanie zabójstwa do licznika gracza
             }
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        health = maxHealth;
+        playerStats = PlayerStats.Instance;
+        if (playerStats == null)
+        {
+            Debug.LogWarning("Nie znaleziono komponentu PlayerStats w scenie.");
+        }
+    }
+
 }

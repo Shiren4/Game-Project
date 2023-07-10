@@ -11,8 +11,6 @@ public class Shooting : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos;
     private float timer;
-
-
     void Start()
     { 
         mainCam = Camera.main;

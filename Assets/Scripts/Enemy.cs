@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.AddGold(goldReward);
-                playerStats.score += 23;
-                playerStats.AddKill(); // Dodanie zabójstwa do licznika gracza
+                playerStats.score += 25;
+                playerStats.AddKill();
             }
             Destroy(gameObject);
         }
@@ -28,11 +28,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        playerStats = PlayerStats.Instance;
-        if (playerStats == null)
-        {
-            Debug.LogWarning("Nie znaleziono komponentu PlayerStats w scenie.");
-        }
+        playerStats = PlayerStats.Instance;       
     }
-
 }

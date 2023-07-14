@@ -22,4 +22,4 @@ public class PlayerControler : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * PlayerStats.Instance.moveSpeed * Time.fixedDeltaTime);
     }
-}
+}   

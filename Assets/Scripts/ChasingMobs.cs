@@ -10,10 +10,8 @@ public class ChasingMobs : MonoBehaviour
  
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        
+        player = GameObject.FindWithTag("Player");   
     }
-
     void Update()
     {
         transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);   

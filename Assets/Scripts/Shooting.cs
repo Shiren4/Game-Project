@@ -6,44 +6,42 @@ public class Shooting : MonoBehaviour
 {
     public GameObject bullet;
     public Transform bulletTransform;
-    public bool canFire;
     public float timeBetweenFiring;
     private Camera mainCam;
-    private Vector3 mousePos;
     private float timer;
-    void Start()
-    { 
+
+    private void Start()
+    {
         mainCam = Camera.main;
     }
+
     private void Update()
     {
         ApplyWeaponRotation();
-        TryCalculateDelayBetweenFiring();
         TryShoot();
+        TryCalculateDelayBetweenFiring();
     }
+
     private void TryShoot()
     {
-        if (Input.GetMouseButton(0) && canFire)
+        if (Input.GetMouseButton(0) && timer <= 0)
         {
-            canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            timer = timeBetweenFiring;
         }
     }
+
     private void TryCalculateDelayBetweenFiring()
     {
-        if (!canFire)
+        if (timer > 0)
         {
-            timer += Time.deltaTime;
-            if (timer > timeBetweenFiring)
-            {
-                canFire = true;
-                timer = 0;
-            }
+            timer -= Time.deltaTime;
         }
     }
+
     private void ApplyWeaponRotation()
     {
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
